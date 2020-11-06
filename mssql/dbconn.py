@@ -2,16 +2,13 @@ from config import config
 from datetime import datetime
 import pyodbc 
 
-
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
 
 cnxn = pyodbc.connect('DRIVER={SQL Server};SERVER='+config.server+';DATABASE='+config.database+';UID='+config.username+';PWD='+config.password+';Trusted_Connection=no;')
 cursor = cnxn.cursor()
 
-
 cursor.execute("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES")
-
 
 row = cursor.fetchone()
 while row:
